@@ -1,0 +1,157 @@
+*{
+  box-sizing: border-box;
+}
+
+.App{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #212121;
+}
+
+#main-box{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
+
+table{
+  border: 0.5px solid black;
+  border-collapse: collapse;
+  min-width: 650px;
+}
+
+td, th{
+  border: 0.5px solid black;
+  padding: 3px;
+  color: lightblue;
+}
+
+th{
+  background-color: #99aab5;
+  color: black;
+}
+
+tr:nth-child(odd){
+  background-color: #2c2f33;
+}
+
+tr:nth-child(even){
+  background-color: #23272a;
+}
+
+#links button{
+  font-size: 20px;
+}
+
+button{
+  border: none;
+  border-radius: 4px;
+  padding: 5px 15px;
+  background-color: lightgreen;
+  margin-left: 6px;
+  outline: none;
+}
+
+button:focus{
+  outline: none;
+}
+
+button:hover{
+  background-color: #7289da;
+  transition: 0.1s;
+  color: white;
+}
+
+table button{
+  margin-left: 3px;
+  flex-grow: 1;
+  padding: 5px;
+}
+
+#input-main-box > input{
+  margin: 8px;
+}
+
+#input-main-box{
+  color: lightblue;
+}
+
+.button-td{
+  display: flex;
+  border: none;
+}
+
+.add-edit-box > form{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 400px;
+  width: 360px;
+  margin-top: 20px;
+  color: lightblue;
+  background-color: #23272a;
+  border: 0.5px solid black;
+}
+
+.add-edit-box > form > input{
+  width: 330px;
+}
+
+.add-edit-box > form > textarea{
+  width: 330px;
+}
+
+.submit-btn{
+  border: none;
+  border-radius: 4px;
+  padding: 5px 15px;
+  background-color: lightgreen;
+  outline: none;
+}
+
+.submit-btn:focus{
+  outline: none;
+}
+
+.submit-btn:hover{
+  background-color: #7289da;
+  transition: 0.1s;
+  color: white;
+}
+
+#details-box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 400px;
+  min-width: 400px;
+  max-width: 600px;
+  text-align: left;
+  color: white;
+  background-color: #23272a;
+  padding: 16px;
+  border: 0.5px solid black;
+  margin-top: 20px;
+}
+
+#details-box label{
+  color: lightblue;
+  margin: 0px 5px;
+}
+
+#details-box > div{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#details-box button{
+  width: 300px;
+  margin: 0;
+}

@@ -16,13 +16,16 @@ class Edit extends React.Component {
     axios.get('http://3.120.96.16:3001/movies/' + this.props.id)
       .then((response) => {
         let data = response.data;
-        console.log(data);
+
         this.setState({
           title: data.title,
           description: data.description,
           director: data.director,
           rating: data.rating
         });
+      })
+      .catch((error) => {
+        console.log(error.response.status);
       })
   }
 
@@ -38,11 +41,14 @@ class Edit extends React.Component {
       .then(() => {
         this.props.match.history.goBack();
       })
+      .catch((error) => {
+        console.log(error.response.status);
+      })
   }
 
   render() {
     return (
-      <>
+      <div className='add-edit-box'>
       <Helmet>
         <title>{ 'Edit - ' + this.state.title }</title>
       </Helmet>
@@ -51,15 +57,15 @@ class Edit extends React.Component {
 
           this.sendDataToServer(this.state.data);
         }}>
+          <label>Title</label>
           <input type='text' value={ this.state.title } onChange={ (e) => {
             this.setState({ title: e.target.value });
           }}/>
-          <textarea rows='4' value={ this.state.description } onChange={ (e) => {
-            this.setState({ description: e.target.value });
-          }}/>
+          <label>Director</label>
           <input type='text' value={ this.state.director } onChange={ (e) => {
             this.setState({ director: e.target.value });
           }}/>
+          <label>Rating</label>
           <input type="number"
             value={ this.state.rating }
             placeholder="0"
@@ -69,9 +75,13 @@ class Edit extends React.Component {
             onChange={ (e) => {
               this.setState({ rating: e.target.value });
             }}/>
-          <input type='submit' value='Submit'/>
+          <label>Description</label>  
+          <textarea rows='6' value={ this.state.description } onChange={ (e) => {
+            this.setState({ description: e.target.value });
+          }}/>
+          <input className='submit-btn' type='submit' value='Submit'/>
         </form>
-      </>
+      </div>
     )
   }
 }

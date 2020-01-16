@@ -12,8 +12,10 @@ class App extends React.Component {
     return (
       <div className='App'>
         <Router>
-          <Link to='/'>Main</Link>
-          <Link to='/add'>Add</Link>
+          <div id='links'>
+            <Link to='/'><button>Main</button></Link>
+            <Link to='/add'><button>Add</button></Link>
+          </div>
           <Route exact path='/' component={ Main }/>
           <Route path='/add' component={ Add }/>
           <Route path='/edit/:id' render={ (props) => <Edit match={props} id={ props.match.params.id }/> }/>

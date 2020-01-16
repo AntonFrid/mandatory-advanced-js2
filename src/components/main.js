@@ -16,7 +16,10 @@ class Main extends React.Component {
     axios.get('http://3.120.96.16:3001/movies')
       .then((response) => {
         this.setState({ data: response.data });
-      });
+      })
+      .catch((error) => {
+        console.log(error);
+      })
   }
 
   componentWillUnmount() {
@@ -29,6 +32,12 @@ class Main extends React.Component {
           .then((response) => {
             this.setState({ data: response.data });
           })
+          .catch((error) => {
+            console.log(error.response.status);
+          })
+      })
+      .catch((error) => {
+        console.log(error.response.status);
       })
   }
 
@@ -48,9 +57,11 @@ class Main extends React.Component {
                <td>{ title }</td>
                <td>{ director }</td>
                <td>{ rating }</td>
-               <td><Link to={ '/details/' + id }><button>Details</button></Link></td>
-               <td><Link to={ '/edit/' + id }><button>Edit</button></Link></td>
-               <td><button onClick={ () => { this.removeMovie(id) } }>Remove</button></td>
+               <td className='button-td'>
+                <Link to={ '/details/' + id }><button>Details</button></Link>
+                <Link to={ '/edit/' + id }><button>Edit</button></Link>
+                <button onClick={ () => { this.removeMovie(id) } }>Remove</button>
+               </td>
             </tr>
          )
       })
@@ -58,29 +69,34 @@ class Main extends React.Component {
 
   render() {
     return (
-      <>
-      <Helmet>
-        <title>Main</title>
-      </Helmet>
-        <input type="text" onChange={ (e) => {
-          this.setState({ titleInput: e.target.value })
-        } }/>
-        <input type="text" onChange={ (e) => {
-          this.setState({ directorInput: e.target.value })
-        } }/>
+      <div id='main-box'>
+        <Helmet>
+          <title>Main</title>
+        </Helmet>
+        <div id="input-main-box">
+          <label>Search by title: </label>
+          <input type="text" onChange={ (e) => {
+            this.setState({ titleInput: e.target.value })
+          } }/>
+          <label>Search by director:</label>
+          <input type="text" onChange={ (e) => {
+            this.setState({ directorInput: e.target.value })
+          } }/>
+        </div>
         <table>
           <thead>
             <tr>
               <th>Title</th>
               <th>Director</th>
               <th>Rating</th>
+              <th>Buttons</th>
             </tr>
           </thead>
           <tbody>
             { this.renderTableData() }
           </tbody>
         </table>
-      </>
+      </div>
     )
   }
 }
