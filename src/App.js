@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import { Link, Route, BrowserRouter as Router } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
 import Main from './components/main.js';
 import Add from './components/add.js';
 import Edit from  './components/edit.js';

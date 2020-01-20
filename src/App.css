@@ -5,7 +5,7 @@
 .App{
   height: 100vh;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: column;
   background-color: #212121;
@@ -53,6 +53,7 @@ button{
   padding: 5px 15px;
   background-color: lightgreen;
   margin-left: 6px;
+  margin-top: 10px;
   outline: none;
 }
 
@@ -67,6 +68,7 @@ button:hover{
 }
 
 table button{
+  margin-top: 0;
   margin-left: 3px;
   flex-grow: 1;
   padding: 5px;
@@ -92,7 +94,7 @@ table button{
   align-items: center;
   height: 400px;
   width: 360px;
-  margin-top: 20px;
+  margin-top: 8px;
   color: lightblue;
   background-color: #23272a;
   border: 0.5px solid black;
@@ -112,6 +114,8 @@ table button{
   padding: 5px 15px;
   background-color: lightgreen;
   outline: none;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 .submit-btn:focus{
@@ -137,7 +141,8 @@ table button{
   background-color: #23272a;
   padding: 16px;
   border: 0.5px solid black;
-  margin-top: 20px;
+  margin-top: 8px;
+  overflow: hidden;
 }
 
 #details-box label{
@@ -154,4 +159,17 @@ table button{
 #details-box button{
   width: 300px;
   margin: 0;
+}
+
+.validationTextHidden{
+  margin: 0;
+  margin-top: -2px;
+  color: #23272a;
+  user-select: none;
+}
+
+.validationTextVisible{
+  margin: 0;
+  margin-top: -2px;
+  color: #ed493e;
 }

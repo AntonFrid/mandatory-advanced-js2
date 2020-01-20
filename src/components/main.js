@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Route, BrowserRouter as Router } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import axios from 'axios';
 
@@ -7,7 +7,7 @@ class Main extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { data: [], titleInput: '', directorInput: '' } ;
+    this.state = { loadError: null, data: [], titleInput: '', directorInput: '' } ;
 
     this.renderTableData = this.renderTableData.bind(this);
   }
@@ -18,7 +18,7 @@ class Main extends React.Component {
         this.setState({ data: response.data });
       })
       .catch((error) => {
-        console.log(error);
+        this.setState({ loadError: true });
       })
   }
 
@@ -37,7 +37,13 @@ class Main extends React.Component {
           })
       })
       .catch((error) => {
-        console.log(error.response.status);
+        axios.get('http://3.120.96.16:3001/movies')
+          .then((response) => {
+            this.setState({ data: response.data });
+          })
+          .catch((error) => {
+            this.setState({ loadError: true });
+          })
       })
   }
 
@@ -49,6 +55,8 @@ class Main extends React.Component {
         if(directorFiltered && titleFiltered){
           return true;
         }
+
+        return false;
       })
         .map((movies, index) => {
          const { id, title, director, rating } = movies;
@@ -74,11 +82,11 @@ class Main extends React.Component {
           <title>Main</title>
         </Helmet>
         <div id="input-main-box">
-          <label>Search by title: </label>
+          <label><b>Search by title:</b></label>
           <input type="text" onChange={ (e) => {
             this.setState({ titleInput: e.target.value })
           } }/>
-          <label>Search by director:</label>
+          <label><b>Search by director:</b></label>
           <input type="text" onChange={ (e) => {
             this.setState({ directorInput: e.target.value })
           } }/>
@@ -96,6 +104,7 @@ class Main extends React.Component {
             { this.renderTableData() }
           </tbody>
         </table>
+        { this.state.loadError ? <h1 style={ { color: '#ed493e' } }>Server down/problem with server*</h1> : null }
       </div>
     )
   }
